@@ -13,19 +13,24 @@ Also, the following tips will help
 4. Come up with a short phrase that will remind you of your password
    i.e. If my password was "1969ChevyCamaro", my short phrase would be "My 
    dream car"
+
 ==========================================================================
 =end
 
 # Array of common passwords
 common = ["pass", "word", "123", "456", "789", "qwerty", "321", "654", "987", "111", "777", "555", "football", "princess", "passw0rd", "dragon", "flower", "admin", "loveme", "password1", "master", "abc", "letmein", "mustang", "superman", "spiderman", "harley", "hunter", "batman", "test", "sunshine", "starwars", "666", "hello", "Pass", "iloveyou", "welcome", "whatever", "freedom", "monkey"]
-	  
+	
+# Array of simple, non related words to generate a password from
+words = ["Horse", "Pig", "Tiger", "Elephant", "Battery", "Pencil", "Mouse", "Ocean", "Mountain", "Country", "Snowflake", "Music", "Staple", "Health", "Keyboard", "Science", "Nature", "Religion", "Movie", "Exam", "Steak", "Estate"]
+
 puts "Welcome to Password Generator! Please type the number of the menu item wish to use."
 puts "Password Generator - Main Menu"
-puts "1. Generate random password"
+puts "1. Generate random character password"
 puts "2. Add secuirty to a current password"
-input = gets.chomp.to_i
+puts "3. Generate a random, but pronouncable, password"
 
-while input < 1 && input > 2
+input = gets.chomp.to_i
+while input < 1 && input > 3
 	puts "Invalid item. Please try again."
 	input = gets.chomp.to_i
 end
@@ -117,6 +122,23 @@ elsif input == 1
 	end
 
 	pass = generate_pass(num, symbols)
+elsif input == 3
+	puts "Enter how many simple words you wish to have in your new password. (No more then 6)"
+	num = gets.chomp.to_i
+	if num > 6
+		puts "You entered a number greated then 6, defaulting to size of 4"
+		num = 4
+	end
+
+	def pass_generate_words(number)
+		wordset = ["Horse", "Pig", "Tiger", "Elephant", "Battery", "Pencil", "Mouse", "Ocean", "Mountain", "Country", "Snowflake", "Music", "Staple", "Health", "Keyboard", "Science", "Nature", "Religion", "Movie", "Exam", "Steak", "Estate"]
+
+		Array.new(number) { wordset.sample }.join
+	end
+
+
+
+	pass = pass_generate_words(num)
 end
 
 puts "This is your new password, keep it secure!"
