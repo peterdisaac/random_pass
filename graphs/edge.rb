@@ -1,1 +1,0 @@
-# Written by Peter Isaac
